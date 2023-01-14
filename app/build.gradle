@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id("androidx.navigation.safeargs.kotlin")
+    id 'kotlin-kapt'
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -38,6 +40,21 @@ android {
 
 dependencies {
 
+    implementation project(':feature:player:presenter')
+    implementation project(':feature:player:models')
+    implementation project(':feature:player:api')
+    implementation project(':feature:player:impl')
+
+    implementation project(':feature:details:impl')
+    implementation project(':feature:details:model')
+    implementation project(':feature:details:api')
+    implementation project(':feature:details:presenter')
+
+
+    implementation project(':resourse')
+    implementation project(':database')
+    implementation project(':navigation')
+
     def nav_version = "2.5.2"
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
@@ -49,10 +66,19 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
+
+
     implementation 'com.github.bumptech.glide:glide:4.13.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
+
 
     // Kotlin
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    //Hilt
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+
+    implementation("com.github.terrakok:cicerone:7.1")
 }

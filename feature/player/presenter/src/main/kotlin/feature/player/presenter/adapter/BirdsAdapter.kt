@@ -1,18 +1,16 @@
-package com.example.dollar.adapter
+package feature.player.presenter.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.dollar.R
-import com.example.dollar.data.Birds
-import com.example.dollar.databinding.BirdsItemBinding
-import com.example.dollar.fragments.MainFragmentDirections
+import feature.player.models.PlayerModel
+import feature.player.presenter.R
+import feature.player.presenter.databinding.BirdsItemBinding
 
 class BirdsAdapter: RecyclerView.Adapter<BirdsAdapter.VH>() {
-    var model: List<Birds> = listOf()
+    var model: List<PlayerModel> = listOf()
     @SuppressLint("NotifyDataSetChanged")
     set(value) {
         field = value
@@ -26,6 +24,8 @@ class BirdsAdapter: RecyclerView.Adapter<BirdsAdapter.VH>() {
         return VH(binding)
     }
 
+    private var clickListener : ((id : Long) -> Unit) ? = null
+
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: VH, position: Int) {
         val player = model[position]
@@ -36,10 +36,13 @@ class BirdsAdapter: RecyclerView.Adapter<BirdsAdapter.VH>() {
         Glide.with(holder.itemView.context).load(player.image).into(holder.binding.birdsImage)
 
         holder.itemView.setOnClickListener {
-            val action = MainFragmentDirections.actionMainFragmentToDetailFragment(player)
-            holder.itemView.findNavController().navigate(action)
+            clickListener?.invoke(player.id)
         }
 
+    }
+
+    fun setClickListener(f : (Long)-> Unit) {
+        clickListener = f
     }
 
     override fun getItemCount(): Int = model.size

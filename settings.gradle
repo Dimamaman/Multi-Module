@@ -14,3 +14,17 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Dollar"
 include ':app'
+include ':feature:player:api'
+include ':feature:player:impl'
+include ':feature:player:presenter'
+include ':feature:player:models'
+
+
+include ':feature:details:api'
+include ':feature:details:impl'
+include ':feature:details:model'
+include ':feature:details:presenter'
+
+include ':resourse'
+include ':database'
+include ':navigation'

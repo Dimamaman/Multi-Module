@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.dollar.fragments.MainFragment"
+        android:name="feature.player.presenter.MainFragment"
         android:label="Birds"
         tools:layout="@layout/fragment_main" >
         <action
@@ -20,14 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.example.dollar.fragments.DetailFragment"
+        android:name="feature.details.presenter.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" >
-        <argument
-            android:name="birdsName"
-            app:argType="com.example.dollar.data.Birds" />
-        <action
-            android:id="@+id/action_detailFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_detail" />
 </navigation>
